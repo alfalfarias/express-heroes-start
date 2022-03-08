@@ -33,7 +33,6 @@ const getOne = async function ({id}) {
 }
 
 const update = async function ({id, data}) {
-    console.log(data);
     const item = await query(() => HeroModel.findOneAndUpdate({id: id}, data, {new: true}));
     return item;
 }

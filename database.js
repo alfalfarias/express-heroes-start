@@ -11,7 +11,7 @@ const connect = async () => {
 const query = async (callback) => {
     const connection = await connect();
     const data = await callback();
-    await connection.disconnect();
+   // await connection.disconnect();
     return data;
 };
 

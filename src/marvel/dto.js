@@ -1,52 +1,17 @@
-const GetAllDTO = ({offset, limit, total, count, results}) => {    
-    const dto = {
-        offset: offset, 
-        limit: limit, 
-        total: total, 
-        count: count, 
-        results: results.map(result => {
-            const resultDTO = ResultDTO(result);
-            return resultDTO;
-        }),
-    };
-    return dto;
-};
-
-const GetOneDTO = ({offset, limit, total, count, results}) => {    
-    const dto = {
-        offset: offset, 
-        limit: limit, 
-        total: total, 
-        count: count, 
-        results: results.map(result => {
-            const resultDTO = ResultDTO(result);
-            return resultDTO;
-        }),
-    };
-    return dto;
-};
-
-const ResultDTO = ({id, name, description, modified, thumbnail}) => {
-    const dto = {
-        id: id, 
-        name: name, 
-        description: description, 
-        modified: modified, 
-        thumbnail: ThumbnailDTO(thumbnail),
-    };
-    return dto;
-};
-
-const ThumbnailDTO = ({path, extension}) => {
-    const dto = {
-        path: path,
-        extension: extension,
-    };
-    return dto;
-};
+const {GetAllDTO} = require('./dto/get-all.dto');
+const {ResultDTO} = require('./dto/result.dto');
+const {ThumbnailDTO} = require('./dto/thumbnail.dto');
+const {GetAllResponseDTO} = require('./dto/get-all-response.dto');
+const {ItemResponseDTO} = require('./dto/item-response.dto');
+const {GetOneDTO} = require('./dto/get-one.dto');
+const {GetOneResponseDTO} = require('./dto/get-one-response.dto');
 
 module.exports = {
     GetAllDTO,
     ResultDTO,
     ThumbnailDTO,
+    GetAllResponseDTO,
+    ItemResponseDTO,
+    GetOneDTO,
+    GetOneResponseDTO,
 };
