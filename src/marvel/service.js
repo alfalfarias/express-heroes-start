@@ -1,4 +1,5 @@
 const axios = require('axios').default;
+const { GetAllDTO } = require('./dto');
 const marvelApi = require('../../config/marvel-api');
 
 const API_URL = marvelApi.URL;
@@ -12,15 +13,17 @@ const getAll = async ({page=0, perPage=20, search=null}) => {
 
     const url = `${API_URL}/characters?apikey=${API_PUBLIC_KEY}&ts=${API_TS}&hash=${API_HASH}&offset=${offset}${nameStartsWith}`;
     const response = await axios.get(url);
-    const {data} = response.data;
-    return data;
+    const { data } = response.data;
+    const dto = GetAllDTO(data);
+    return dto;
 }
 
 const getOne = async function ({id}) {
     const url = `${API_URL}/characters/${id}?apikey=${API_PUBLIC_KEY}&ts=${API_TS}&hash=${API_HASH}`;
     const response = await axios.get(url);
-    const {data} = response.data;
-    return data;
+    const { data } = response.data;
+    const dto = GetAllDTO(data);
+    return dto;
 }
 
 const service = {

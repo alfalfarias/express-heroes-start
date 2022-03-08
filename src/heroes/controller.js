@@ -1,4 +1,4 @@
-const {service} = require('./service');
+const { service } = require('./service');
 
 const update = async function (req, res) {
     const id = req.params.id;
