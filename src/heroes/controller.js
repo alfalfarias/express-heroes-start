@@ -1,16 +1,24 @@
-const axios = require('axios').default;
-const API_URL = `https://jsonplaceholder.typicode.com`;
+const {service} = require('./service');
 
-const getAll = async function (req, res) {
-    const { data } = await axios.get(`${API_URL}/todos/1`);
+const update = async function (req, res) {
+    const id = req.params.id;
+    const values = { };
+    const data = await service.updateColor({id: id, values});
     res.send(data);
 }
-const setColor = async function (req, res) {
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+const updateColor = async function (req, res) {
+    const id = req.params.id;
+    const color = 'blue';
+    const data = await service.updateColor({id: id, color: color});
     res.send(data);
 }
+
+
+const controller = {
+    update,
+    updateColor,
+};
 
 module.exports = {
-    getAll,
-    setColor,
+    controller
 };

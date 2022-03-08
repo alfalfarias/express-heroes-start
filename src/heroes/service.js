@@ -1,10 +1,20 @@
-const update = async function (req, res) {
-    const id = req.params.id;
-    res.send('USER ID: '+id);
+const update = async function ({id, values}) {
+    return {
+        id: id, 
+        ...values
+    };
+}
+
+const updateColor = async function ({id, color=null}) {
+    return {
+        id: id, 
+        color: color
+    };
 }
 
 const service = {
     update,
+    updateColor,
 };
 
 module.exports = {
