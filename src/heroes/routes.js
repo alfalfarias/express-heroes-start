@@ -7,7 +7,7 @@ router.post('/heroes', controller.create);
 router.get('/heroes', controller.getAll);
 router.get('/heroes/:id', controller.getOne);
 router.put('/heroes/:id', controller.update);
-router.put('/heroes/:id/color', controller.updateColor);
+router.post('/heroes/:id/color', controller.saveColor);
 router.delete('/heroes/:id', controller.destroy);
 
 module.exports = router;

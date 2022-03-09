@@ -26,8 +26,9 @@ const getAll = async ({ page=0, perPage=20, search=null }) => {
                 name: result.name, 
                 description: result.description, 
                 modified: result.modified, 
-                thumbnailURI: `${result.thumbnail.path + result.thumbnail.extension}`,
+                thumbnailURI: `${result.thumbnail.path}.${result.thumbnail.extension}`,
                 color: heroModel ? heroModel.color : null, 
+                team: heroModel ? heroModel.team : null, 
             }); 
             return dto;
         })
@@ -46,16 +47,17 @@ const getOne = async function ({ id }) {
     const url = `${API_URL}/characters/${id}?apikey=${API_PUBLIC_KEY}&ts=${API_TS}&hash=${API_HASH}`;
     const response = await axios.get(url);
     const { data } = response.data;
-    const getAllDTO = GetOneDTO(data);
-    const [ result ] = getAllDTO.results;
+    const getOneDTO = GetOneDTO(data);
+    const [ result ] = getOneDTO.results;
     const heroModel = await query(() => HeroModel.findOne({id: result.id}));
     const getOneResponseDTO = GetOneResponseDTO({
         id: result.id,
         name: result.name,
         description: result.description,
         modified: result.modified,
-        thumbnailURI: `${result.thumbnail.path + result.thumbnail.extension}`,
+        thumbnailURI: `${result.thumbnail.path}.${result.thumbnail.extension}`,
         color: heroModel ? heroModel.color : null, 
+        team: heroModel ? heroModel.team : null, 
     });
     return getOneResponseDTO;
 }

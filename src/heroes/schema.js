@@ -8,6 +8,7 @@ const heroSchema = new Schema({
     thumbnailURI: String,
     resourceURI: String,
     color: String,
+    team: String,
 });
 
 const HERO_MODEL_NAME = 'Heroe';

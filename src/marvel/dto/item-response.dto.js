@@ -1,4 +1,4 @@
-const ItemResponseDTO = ({ id, name, description, modified, thumbnailURI, color }) => {    
+const ItemResponseDTO = ({ id, name, description, modified, thumbnailURI, color, team }) => {    
     const dto = {
         id: id,
         name: name,
@@ -6,6 +6,7 @@ const ItemResponseDTO = ({ id, name, description, modified, thumbnailURI, color 
         modified: modified,
         thumbnailURI: thumbnailURI,
         color: color,
+        team: team,
     };
     return dto;
 };

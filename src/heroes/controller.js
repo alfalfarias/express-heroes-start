@@ -22,10 +22,11 @@ const update = async function (req, res) {
     const data = await service.update({id: id, data: body});
     res.send(data);
 }
-const updateColor = async function (req, res) {
+const saveColor = async function (req, res) {
     const id = req.params.id;
-    const color = 'blue';
-    const data = await service.updateColor({id: id, color: color});
+    const { body } = req;
+    const { team, color } = body;
+    const data = await service.saveColor({id: id, team: team, color: color});
     res.send(data);
 }
 const destroy = async function (req, res) {
@@ -39,7 +40,7 @@ const controller = {
     getAll,
     getOne,
     update,
-    updateColor,
+    saveColor,
     destroy,
 };
 

@@ -1,7 +1,7 @@
 const { query } = require('../../database');
 const { HeroModel } = require('./schema');
 
-const create = async function (data = { id, name, description, modified, thumbnailURI, resourceURI, color}) {
+const create = async function (data = { id, name, description, modified, thumbnailURI, color, team}) {
     const item = await query(async () => {
         const item = new HeroModel(data);
         await item.save();
@@ -37,11 +37,15 @@ const update = async function ({id, data}) {
     return item;
 }
 
-const updateColor = async function ({id, color=null}) {
-    return {
-        id: id, 
-        color: color
-    };
+const saveColor = async function ({id, color, team}) {
+    const data = { id: id, color: color, team: team };
+    let item = await query(() => HeroModel.findOne({id: id}));
+    if (!item) {
+        item = new HeroModel(data);
+        await item.save();
+    }
+    item = await query(() => HeroModel.findOneAndUpdate({id: id}, data, {new: true}));
+    return item;
 }
 
 const destroy = async function ({id}) {
@@ -59,7 +63,7 @@ const service = {
     getAll,
     getOne,
     update,
-    updateColor,
+    saveColor,
     destroy,
 };
 
