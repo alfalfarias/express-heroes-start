@@ -114,11 +114,6 @@ const saveColor = async function (req, res, next) {
         return res.status(422).json(error.details);
     }
 
-    const item = await query(() => HeroModel.findOne({id: id}));
-    if (!item) {
-        return res.status(404).send('HERO NOT FOUND');
-    }
-
     next();
 };
 
