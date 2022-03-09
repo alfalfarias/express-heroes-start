@@ -9,13 +9,13 @@ const getAll = async (req, res) => {
         perPage: perPage, 
         search: search,
     });
-    res.send(data);
+    return res.send(data);
 }
 
-const getOne = async function (req, res) {
+const getOne = async (req, res) => {
     const id = req.params.id;
     const data = await service.getOne({id: id});
-    res.send(data);
+    return res.send(data);
 }
 
 const controller = {
